@@ -5,14 +5,14 @@
 </p>
 
 <p align="center">
-  <a href="#overview">Overview</a> - 
-  <a href="#why-omnistack">Why Omnistack</a> - 
-  <a href="#architecture">Architecture</a> - 
-  <a href="#tooling">Tooling</a> - 
-  <a href="#installation">Installation</a> - 
-  <a href="#master-script">Master Script</a> - 
-  <a href="#gemini-project-rules-omnistack-senior-edition">Project Rules</a> - 
-  <a href="#upload-to-github">Upload to GitHub</a> - 
+  <a href="#overview">Overview</a> •
+  <a href="#why-omnistack">Why Omnistack</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#tooling">Tooling</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#master-script">Master Script</a> •
+  <a href="#gemini-project-rules-omnistack-senior-edition">Project Rules</a> •
+  <a href="#upload-to-github">Upload to GitHub</a> •
   <a href="#license">License</a>
 </p>
 
@@ -22,7 +22,7 @@
   <img src="https://img.shields.io/badge/context-multi--repo-blue.svg" alt="Multi-repo context">
 </p>
 
-***
+---
 
 ## Overview
 
@@ -83,6 +83,42 @@ Omnistack follows a layered workflow:
    ```bash
    omnistack
    ```
+
+
+## repomix.config.json
+
+Create the following `repomix.config.json` file in the **root folder** of the workspace. This file must live alongside the repositories and the generated `global_skeleton.md` so `repomix` can detect and use it correctly.
+
+```json
+{
+  "output": {
+    "filePath": "global_skeleton.md",
+    "style": "markdown",
+    "removeComments": true,
+    "removeEmptyLines": true
+  },
+  "ignore": {
+    "customPatterns": [
+      "**/node_modules/**", "**/dist/**", "**/venv/**", "**/*.log",
+      "**/*.csv", "**/*.json", "**/*_OLD/**", "**/infraestructura/**"
+    ],
+    "useDefaultIgnore": true,
+    "useGitignore": true
+  }
+}
+```
+
+### Required location
+
+```text
+workspace-root/
+├── repomix.config.json  ← place it here
+├── global_skeleton.md
+├── .cce_context.json
+├── repo-a/
+├── repo-b/
+└── repo-c/
+```
 
 ## Master Script
 
@@ -179,7 +215,6 @@ fi
 
 echo -e "${GREEN}🏁 Pipeline Omnistack listo para Antigravity.${NC}"
 ```
-
 ## Gemini Project Rules: Omnistack Senior Edition
 
 This section can be copied into global IDE rules or into a `.gemini_rules.md` file.
